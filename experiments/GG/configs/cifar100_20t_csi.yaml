@@ -1,0 +1,36 @@
+seed: REPLACE
+
+# Trainer setup and trainer specific params
+log_dir: REPLACE
+# save: True
+
+# Dataset setup
+data: /path/to/dataset/parent
+set: RandSplitCIFAR100CSI
+num_tasks: 20
+
+# Model setup
+model: GEMResNet18CSI
+conv_type: MultitaskMaskConv
+bn_type: MultitaskNonAffineBN
+conv_init: signed_constant
+output_size: 5
+total_cls: 100
+er_sparsity: True
+sparsity: REPLACE
+
+# Optimizer setup
+optimizer: lars
+epochs: 700
+lr: 0.1
+batch_size: 128
+test_batch_size: 128
+
+# Adaptation setup
+adaptor: gt
+adapt: True
+hard_alphas: True
+adapt_lrs: [200]
+eval_ckpts: []
+
+print_filename: "result.txt"
